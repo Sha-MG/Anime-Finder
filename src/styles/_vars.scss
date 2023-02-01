@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Satoshi-Regular';
+  src: url('../assets/fonts/Satoshi-Regular.otf');
+}
+@font-face {
+  font-family: 'Satoshi-Bold';
+  src: url('../assets/fonts/Satoshi-Bold.otf');
+}
+
+$global-font: 'Satoshi-Regular', serif;
+$title-font: 'Satoshi-Bold', serif;
+
+$primary:#4334C8;
+$grey:#EFEFEF;
+
+$white:#FFF;
+$black:#000;

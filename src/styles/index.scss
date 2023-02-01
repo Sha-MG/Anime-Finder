@@ -1,0 +1,7 @@
+@use 'reset';
+@use 'vars' as v ;
+
+body {
+  font-family: v.$global-font;
+  background-color: v.$grey;
+}
