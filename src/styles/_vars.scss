@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Satoshi-Regular';
-  src: url('../assets/fonts/Satoshi-Regular.otf');
+  src: url('src/assets/fonts/Satoshi-Regular.otf');
 }
 @font-face {
   font-family: 'Satoshi-Bold';
-  src: url('../assets/fonts/Satoshi-Bold.otf');
+  src: url('src/assets/fonts/Satoshi-Bold.otf');
 }
 
 $global-font: 'Satoshi-Regular', serif;
@@ -15,3 +15,27 @@ $grey:#EFEFEF;
 
 $white:#FFF;
 $black:#000;
+
+@mixin titre {
+font-family: 'Satoshi-Bold';
+font-weight: 700;
+color: $primary;
+border-radius: 8px;
+};
+
+@mixin flex {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button{
+  background-color: $primary;
+  color: $white;
+  border-radius: 8px;
+  border: none;
+  text-decoration: none;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}

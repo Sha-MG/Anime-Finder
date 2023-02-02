@@ -1,17 +1,10 @@
 const HeaderItem = ({headerGroup}) => (
-
   <tr {...headerGroup.getHeaderGroupProps()}>
-
   {headerGroup.headers.map(column => (
-  <th {...column.getHeaderProps(column.getSortByToggleProps())} >
+  <th {...column.getHeaderProps({
+                  style: { minWidth: column.minWidth, width: column.width },
+                })} >
   {column.render('Header')}
-    <span>
-      {column.isSorted
-      ? column.isSortedDesc
-        ? ' 🔽'
-        : ' 🔼'
-      : ''}
-    </span>
   </th>
   ))}
   </tr>

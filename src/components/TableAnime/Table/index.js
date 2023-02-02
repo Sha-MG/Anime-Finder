@@ -1,17 +1,15 @@
 // == Import
-import { useTable, useSortBy } from "react-table";
-import { useMemo, useState } from "react";
+import { useTable } from "react-table";
+import { useMemo } from "react";
 import { Link } from 'react-router-dom';
 import moment from "moment"
 
 import RowItem from "./RowItem";
 import HeaderItem from "./HeaderItem";
-
+import './styles.scss';
 
 // == Composant
 const Table = ({animes}) => {
-
-  const data = useMemo(() => animes, [])
   
   const columns = useMemo(() => [ 
     { Header: "Titre", accessor: "attributes.canonicalTitle"},
@@ -19,7 +17,7 @@ const Table = ({animes}) => {
     { Header: "Age recommandé", accessor: "attributes.ageRatingGuide"},
     { Header: "Date de sortie", accessor: d => moment(d.attributes.startDate).format("DD/MM/YYYY")},
     { Header: "Rang", accessor: "attributes.popularityRank"},
-    { Header: " ", accessor: d => <Link to={`/anime/${d.id}`}>Voir les détails</Link>},
+    { Header: " ", accessor: d => <Link to={`/anime/${d.id}`}>Voir les détails</Link>, width:100},
   ]);
 
   const {
@@ -28,13 +26,11 @@ const Table = ({animes}) => {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, data:data}, useSortBy )
-
+  } = useTable({columns, data: animes})
 
   return (
-
     <>
-        <table {...getTableProps()}>
+      <table {...getTableProps()} className='table-container'>
         <thead>
         {headerGroups.map(headerGroup => (
             <HeaderItem headerGroup={headerGroup} key={Date.now()}/>
@@ -44,7 +40,7 @@ const Table = ({animes}) => {
         {rows.map(row => {
           prepareRow(row)
           return (
-            <RowItem key={row.id} row={row} />
+            <RowItem key={(Date.now()*Math.random())} row={row} />
           )
         })}
         </tbody>

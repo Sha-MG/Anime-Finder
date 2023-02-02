@@ -1,0 +1,34 @@
+@use 'src/styles/vars' as v ;
+
+.table-container{
+  background-color: v.$white;
+  border-radius: 9px;
+  margin: 0;
+  width: 100%;
+  font-size: 0.9em;
+  border-collapse: collapse; 
+  border-spacing : 30px ;
+
+  thead{
+    text-align: left;
+    th{
+      padding-bottom: 10px ;
+      font-family: v.$title-font;
+      font-weight: 700;
+    }
+  }
+
+  &--row{
+    border-bottom: 1px solid v.$grey;
+
+    a{
+      color: v.$primary;
+      text-decoration: none;
+      border-bottom: 1px solid v.$primary;
+    }
+  }
+
+  td {
+    padding: 10px 0;
+  }
+}

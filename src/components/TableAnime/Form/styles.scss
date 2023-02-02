@@ -1,0 +1,55 @@
+@use 'src/styles/vars' as v ;
+
+
+.form-container{
+  padding: 5vh 0;
+
+  &--search-input{
+    display: inline-block;
+
+    .search-icon{
+    color: v.$primary;
+    position: relative;
+    bottom: -36px;
+    left: 15px;
+    }
+
+    input{
+      padding: 13px;
+      padding-left: 55px;
+      border-radius: 8px;
+      border: none;
+      width: 24vw;
+
+      &:focus{
+        outline: 2px solid v.$primary;
+      }
+    }
+  }
+
+  &--select{
+
+    padding: 13px;
+    color: v.$primary;
+    background-color: v.$grey;
+    border: 2px solid v.$primary;
+    border-radius: 8px;
+    width: 12vw;
+    min-width: 200px;
+    transition: all 0.2s ease-in;
+    position: relative;
+
+    &:focus{
+      background-color: v.$white;
+      border: 2px solid v.$primary;
+    }
+
+    &--year{
+      margin: 0 30px;
+    }
+
+  }
+  
+  
+}
+

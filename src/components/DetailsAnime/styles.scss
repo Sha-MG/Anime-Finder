@@ -1,0 +1,100 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.details-anime{
+
+&--container{
+  width: 100vw;
+  height: 100vh;
+  background-color: v.$white;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;  
+}
+&--back{
+  @include button;
+  grid-area: 3 / 2 / 4 / 4;;
+  z-index: 4;
+  gap: 10px;
+  margin: 10px;
+  min-width: 220px;
+}
+
+&--cover { 
+  grid-area: 2 / 3 / 7 / 14; 
+}
+
+&--poster{ 
+  grid-area: 6 / 4 / 11 / 6;
+}
+
+&--cover, &--poster{
+  background-color: v.$grey;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+
+&--desc { 
+  grid-area: 7 / 6 / 14 / 14; 
+  padding: 20px;
+
+  &--title-container{
+
+    @include flex;
+    justify-content: flex-start;
+    gap: 20px;
+
+    h1{
+      @include titre;
+      color: v.$black;
+      font-size: 2rem;
+    }
+    span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: v.$primary;
+    }
+    p{
+      @include titre;
+    }
+
+  }
+
+  &--fav{
+    @include titre;
+    @include flex;
+    border: 3px solid v.$primary;
+    gap: 10px;
+    width: 200px;
+    padding: 5px 10px;
+    margin: 20px 0;
+
+    &-toggled{
+      @include titre;
+      @include flex;
+      color: v.$white;
+      background-color: v.$primary;
+      border: 3px solid v.$primary;
+      gap: 10px;
+      width: 200px;
+      padding: 5px 10px;
+      margin: 20px 0;
+    }
+  }
+  
+}
+
+&--fav{
+  @include button;
+  width: 180px;
+  height: 40px;
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  gap: 20px;
+}
+}
