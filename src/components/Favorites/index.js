@@ -1,55 +1,30 @@
 import './styles.scss'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Loader from '../Loader';
 import { Link } from 'react-router-dom';
-
+import Card from '../DetailsAnime/Card';
+import { TbArrowBackUp } from 'react-icons/tb';
 
 const Favorites = ({favorites}) => {
 
-  const url = () => {
-
-    console.log(favorites)
-
-    if(favorites){
-      let newTruc = 'id='+favorites.join('&id=')
-      setEndpoint(newTruc)
-    }
-    
-  }
-  const [endpoint, setEndpoint] = useState('/anime?page[limit]=10&page[offset]=0')
-  const [animes, setAnimes]= useState();
-  const [loadingData, setLoadingData] = useState(true);
-
-  const getAnimes = async () => {
-    const response = await axios.get(`https://kitsu.io/api/edge/anime/1`);
-    setAnimes(response.data);
-    setLoadingData(false);
-    console.log(response.data)
-  }
-
-  useEffect(() => {
-    url()
-    getAnimes()
-    }, []);
-
-    console.log(animes)
+  console.log(favorites.length)
   return(
-    <div >
-      <h1>Favoris</h1>
-      {loadingData ? 
-        (
-          <Loader/>
-        ) : (
-        <div>
-            {
-              animes.map((anime) => { return (<p>{anime.attributes.canonicalTitle}</p> ) 
-            })
-            }
-        </div>
-        )
-      }
-      <Link to='/'>Retour</Link>
+    <div className='favorite-page'>
+      <div className='favorite-page--title'>
+        <h1>Mes favoris</h1>
+        <Link to='/' className='favorite-page--title--button'> <TbArrowBackUp size={'30px'}/> Retour au catalogue</Link>
+      </div>
+      <div className='anime-card--container'>
+        {
+          favorites.map((anime) => (
+            <Card
+              key={anime.data.id}
+              anime={anime}
+            />
+          ))
+        }
+        { favorites.length === 0 &&
+            <p className='anime-card--message'> Tu n'as pas encore de favoris ! </p>
+        }
+      </div>
     </div>
   )
 

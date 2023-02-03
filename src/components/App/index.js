@@ -17,17 +17,14 @@ function App() {
   const toggleFavorites = (event, anime) => {
     
     let newFavorites = favorites ;
-    let animeId = event.target.value;
 
-    console.log(!newFavorites.find(a => a.data.id === animeId))
-    if(!newFavorites.find(a => a.data.id === animeId)){
+    if(!newFavorites.find(a => a.data.attributes.canonicalTitle === anime.data.attributes.canonicalTitle)){
       newFavorites.push(anime)
       setFavorites(newFavorites)
     }else{
-      let newFav = newFavorites.filter(a => a.data.id !== animeId)
+      let newFav = newFavorites.filter(a => a.data.attributes.canonicalTitle != anime.data.attributes.canonicalTitle)
       setFavorites(newFav)
     }
-    console.log(favorites)
   };
 
   return (

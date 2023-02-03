@@ -1,6 +1,11 @@
 @use 'src/styles/vars' as v ;
 @import 'src/styles/vars';
 
+.tableAnime-background{
+  width: 100%;
+  height: 100%;
+  background-color: v.$grey;
+}
 .tableAnime-container{
   width: 85vw;
   height: 100vh;

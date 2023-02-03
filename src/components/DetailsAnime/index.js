@@ -21,7 +21,7 @@ const DetailsAnimes = ({toggleFavorites, favorites}) => {
   const params = useParams();
   const [anime, setAnime] = useState({});
   const [loadingData, setLoadingData] = useState(true);
-  const [toggled, setToggled] = useState(favorites.includes(params.id))
+  const [toggled, setToggled] = useState(false)
 
 // fetchAnimes récupère les données de l'anime en fonction de l'id indiqué dans l'URL
   useEffect(() => {
@@ -30,6 +30,8 @@ const DetailsAnimes = ({toggleFavorites, favorites}) => {
       const response = await axios.get(`https://kitsu.io/api/edge/anime/${params.id}`);
       setAnime(response.data);
       setLoadingData(false);
+      console.log(response.data.data.attributes.canonicalTitle)
+      setToggled(favorites.find(a => a.data.attributes.canonicalTitle === response.data.data.attributes.canonicalTitle))
     };
 
     fetchAnimes();

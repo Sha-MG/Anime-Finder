@@ -1,0 +1,48 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+
+.favorite-page{
+  width: 70vw;
+  margin: auto;
+
+  &--title{
+    @include flex;
+    justify-content: space-between;
+    margin: 5vh 0;
+
+    h1{
+      @include titre;
+    }
+    &--button{
+      @include button;
+      gap : 15px;
+      padding: 5px 15px ;
+    }
+
+  }
+
+  .anime-card {
+    &--container{
+
+      @include flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 5vw;
+  
+    }
+  
+    &--card{
+      border-radius: 20px;
+      width: 25%;
+      height: 45vh;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    &--message{
+      font-size: 2em;
+    }
+  }
+}
+
