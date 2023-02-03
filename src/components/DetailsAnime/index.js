@@ -58,7 +58,7 @@ const DetailsAnimes = ({toggleFavorites, favorites}) => {
             <div className='details-anime--desc--title-container'>
               <h1>{anime.data.attributes.canonicalTitle}</h1>
               <span> </span>
-              <p>Rang {anime.data.attributes.ratingRank}</p>
+              <p>Rang {anime.data.attributes.popularityRank}</p>
             </div>
 {/* Bouton avec affichage conditonnel selon si l'anime fait partis des favoris.
 Au clic, toggle du favoris et de l'état du bouton */}

@@ -1,6 +1,6 @@
 import './styles.scss'
 import { Link } from 'react-router-dom';
-import Card from '../DetailsAnime/Card';
+import Card from './Card';
 import { TbArrowBackUp } from 'react-icons/tb';
 
 const Favorites = ({favorites}) => {
