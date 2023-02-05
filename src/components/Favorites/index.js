@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import Card from './Card';
 import { TbArrowBackUp } from 'react-icons/tb';
 
-const Favorites = ({favorites}) => {
+const Favorites = ({favorites, toggleFavorites}) => {
 
-  console.log(favorites.length)
   return(
     <div className='favorite-page'>
       <div className='favorite-page--title'>
@@ -18,6 +17,7 @@ const Favorites = ({favorites}) => {
             <Card
               key={anime.data.id}
               anime={anime}
+              toggleFavorites={toggleFavorites}
             />
           ))
         }

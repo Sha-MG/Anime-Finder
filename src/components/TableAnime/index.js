@@ -7,7 +7,7 @@ import './styles.scss';
 import {AiFillHeart} from 'react-icons/ai';
 import Loader from "../Loader";
 import { Link } from "react-router-dom";
-import {HiArrowUturnRight} from 'react-icons/hi2'
+import {HiArrowUturnLeft, HiArrowUturnRight} from 'react-icons/hi2'
 
 // == Composant
 const TableAnime = () => {
@@ -15,12 +15,12 @@ const TableAnime = () => {
   const [animes, setAnimes] = useState({});
   const [loadingData, setLoadingData] = useState(true);
   const [endpoint, setEndpoint] = useState('/anime?page[limit]=10&page[offset]=0')
+  const [index, setIndex] = useState(0)
 
   const getAnimes = async () => {
     const response = await axios.get(`https://kitsu.io/api/edge${endpoint}`);
     setAnimes(response.data);
     setLoadingData(false);
-    console.log(response.data)
   }
 
   useEffect(() => {
@@ -56,6 +56,50 @@ const TableAnime = () => {
     }
   }
   
+  const handlePage = async (event, instruction, link) => {
+    setLoadingData(true)
+    let newIndex = index ;
+
+    switch (instruction) {
+      case 'prev' : 
+        newIndex = newIndex-1;
+        setIndex(newIndex)
+        const prevResponse = await getAnimeFromPage(newIndex*10);
+        setAnimes(prevResponse);
+      break;
+
+      case 'next' : 
+        newIndex = newIndex+1;
+        setIndex(index+1)
+        const nextResponse = await getAnimeFromPage(newIndex*10);
+        setAnimes(nextResponse);
+      break;
+
+      case 'first' :
+        newIndex = 0;
+        setIndex(0)
+        const firstResponse = await getAnimeFromPage(0);
+        setAnimes(firstResponse);
+      break;
+
+      case 'last' :
+        let lastIndex = parseInt(link.split('=')[2])/10
+        setIndex(lastIndex)
+        const lastResponse = await getAnimeFromPage(link.split('=')[2]);
+        console.log(lastResponse)
+        setAnimes(lastResponse);
+      break;
+    }
+    setLoadingData(false)
+  }
+
+  const getAnimeFromPage = async (offset) => {
+    console.log(offset)
+    const response = await axios.get(`https://kitsu.io/api/edge/anime?page[limit]=10&page[offset]=${offset}`);
+    console.log(response.data)
+    return(response.data)
+  }
+
   return (
     <div className='tableAnime-background'>
       <div className="tableAnime-container">
@@ -68,7 +112,13 @@ const TableAnime = () => {
           <div className="tableAnime-container--table">
             <Table animes={animes.data} />  
 
-            <HiArrowUturnRight/>
+            <div className='tableAnime-container--pagination'>
+              <p className="tableAnime-container--arrow" onClick={e => handlePage(e, 'first', animes.links.first)}>First</p>
+              <HiArrowUturnRight className="tableAnime-container--arrow" size="30px" onClick={e => handlePage(e, 'next')}/>
+              <HiArrowUturnLeft className="tableAnime-container--arrow" size="30px" onClick={e => handlePage(e, 'prev')}/>
+              <p className="tableAnime-container--arrow" onClick={e => handlePage(e, 'last', animes.links.last)}>Last</p>
+            </div>
+            
           </div>
           )
         }

@@ -73,7 +73,12 @@ const customStyles = {
     ...defaultStyles, 
     color: "#4334C8",
 
-  })
+  }),
+
+  multiValueLabel: (defaultStyles) => ({
+    ...defaultStyles, 
+    color: "#4334C8",
+  }),
 };
 
 export default customStyles ;

@@ -21,28 +21,147 @@
     }
 
   }
-
-  .anime-card {
-    &--container{
-
-      @include flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 5vw;
-  
-    }
-  
-    &--card{
-      border-radius: 20px;
-      width: 25%;
-      height: 45vh;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    &--message{
-      font-size: 2em;
-    }
-  }
 }
 
+.anime-card--container{
+  @include flex;
+  justify-content: flex-start;
+  gap: 5vw;
+}
+ .cards{
+ // Début du style de chaque carte
+   &--cardsboard {
+     display: flex;
+     @include flex;
+     height: 100%;
+     position: relative;    
+     border-radius: 20px;
+     width: 30%;
+     margin: 50px 0;
+
+     &--card{
+     flex: initial;
+     position: relative;
+     height: 30vw;
+     width: 35vw;
+     -moz-perspective: 200rem;
+     perspective: 200rem;
+ 
+ // ScrollBar personnalisée des cards
+     & ::-webkit-scrollbar-track
+     {
+       background-color: rgba(v.$black, 0.1);
+       border-radius: 2px;
+     }
+ 
+     & ::-webkit-scrollbar
+     {
+       width: 10px;
+     }
+ 
+     & ::-webkit-scrollbar-thumb
+     {
+       border-radius: 2px;
+       background-color: rgba(v.$primary, 0.7);
+     }
+ 
+ // Style sur chaque côté
+   &__side {
+     height: 30vw;
+     transition: all 0.8s ease;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     -webkit-backface-visibility: hidden;
+     backface-visibility: hidden;
+     border-radius: 3px;
+     overflow: hidden;
+     box-shadow: 0 2rem 6rem rgba(v.$black, 0.15);
+ 
+ // Devant des cartes
+   &--front {
+     border-radius: 10px;
+     background-size: cover;
+     background-repeat: no-repeat;
+   }
+ 
+ // Derrière des cartes
+   &--back {
+    overflow-y: scroll;
+    background-color: v.$white;
+    transform: rotateY(180deg);
+    border-radius: 20px 0 0 20px;
+   }
+  }
+ 
+  &:hover &__side--back {
+   transform: rotateY(0);
+  }
+  &:hover &__side--front {
+   transform: rotateY(-180deg);
+  }
+ 
+  // Côté back des cartes
+  &__cover {
+    @include titre;
+   position: relative;
+   background-size: cover;
+   height: 10rem;
+   -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+   background-color: v.$primary;
+  }
+ 
+  &__heading {
+   text-align: center;
+   color: v.$white;
+   @include absCenter;
+   width: 75%;
+  }
+ 
+  &__heading-span {
+   font-size: 1.5rem;
+   font-weight: 700;
+   text-transform: uppercase;
+   padding: 1rem 1.5rem;
+   color: v.$white;
+  }
+ 
+  &__details {
+
+   ul {
+    list-style: none;
+    width: 90%;
+    margin: 0 auto;
+ 
+    li {
+ 
+     font-family: v.$global-font;
+     text-align: center;
+     font-size: 1rem;
+     padding: 1rem;
+ 
+     &:nth-child(2){
+       text-align: justify;
+       font-size: 0.8rem;
+     }
+ 
+     &:not(:last-child) {
+      border-bottom: 1px solid v.$black;
+     }
+ 
+    }
+  }
+
+  &--link{
+    background-color: v.$primary;
+    margin: 10% 20%;
+    border-radius: 8px;
+    color: v.$white;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+}}
+   }}
