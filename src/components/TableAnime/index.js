@@ -15,11 +15,14 @@ const TableAnime = () => {
   const [animes, setAnimes] = useState({});
   const [loadingData, setLoadingData] = useState(true);
   const [endpoint, setEndpoint] = useState('/anime?page[limit]=10&page[offset]=0')
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(0);
+  const [lastPage, setLastPage] = useState(10);
 
   const getAnimes = async () => {
     const response = await axios.get(`https://kitsu.io/api/edge${endpoint}`);
     setAnimes(response.data);
+    let lastPage = (response.data.links.last.split('=')[2])/10
+    setLastPage(lastPage)
     setLoadingData(false);
   }
 
@@ -86,7 +89,6 @@ const TableAnime = () => {
         let lastIndex = parseInt(link.split('=')[2])/10
         setIndex(lastIndex)
         const lastResponse = await getAnimeFromPage(link.split('=')[2]);
-        console.log(lastResponse)
         setAnimes(lastResponse);
       break;
     }
@@ -96,7 +98,6 @@ const TableAnime = () => {
   const getAnimeFromPage = async (offset) => {
     console.log(offset)
     const response = await axios.get(`https://kitsu.io/api/edge/anime?page[limit]=10&page[offset]=${offset}`);
-    console.log(response.data)
     return(response.data)
   }
 
@@ -113,9 +114,15 @@ const TableAnime = () => {
             <Table animes={animes.data} />  
 
             <div className='tableAnime-container--pagination'>
-              <p className="tableAnime-container--arrow" onClick={e => handlePage(e, 'first', animes.links.first)}>First</p>
-              <HiArrowUturnRight className="tableAnime-container--arrow" size="30px" onClick={e => handlePage(e, 'next')}/>
-              <HiArrowUturnLeft className="tableAnime-container--arrow" size="30px" onClick={e => handlePage(e, 'prev')}/>
+              { index != 0 &&
+                <p className="tableAnime-container--arrow" onClick={e => handlePage(e, 'first', animes.links.first)}>First</p>
+              }
+              {index != lastPage &&
+                <HiArrowUturnRight className="tableAnime-container--arrow" size="30px" onClick={e => handlePage(e, 'next')}/>
+              }
+              { index != 0 &&
+                <HiArrowUturnLeft className="tableAnime-container--arrow" size="30px" onClick={e => handlePage(e, 'prev')}/>
+              }
               <p className="tableAnime-container--arrow" onClick={e => handlePage(e, 'last', animes.links.last)}>Last</p>
             </div>
             
