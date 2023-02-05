@@ -1,8 +1,17 @@
+// Import 
+// Interne
 import './styles.scss'
-import { Link } from 'react-router-dom';
 import Card from './Card';
+// Externes
+import { Link } from 'react-router-dom';
 import { TbArrowBackUp } from 'react-icons/tb';
 
+
+// Composant Favorites, 
+// favorites est le tableau qui contient tous les anims indiqués en fav
+// Par l'utilisateur, déclaré et gérér dans App/index.js
+// toggleFavorites est la fonction qui gère l'ajout ou le retrait
+// d'un anim du tableau favorites, déclaré dans App/index.js
 const Favorites = ({favorites, toggleFavorites}) => {
 
   return(

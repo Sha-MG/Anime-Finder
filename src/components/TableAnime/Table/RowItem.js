@@ -1,3 +1,6 @@
+// Composant qui remplis le tableau de tous les animes
+//  Utilisé dans Table/index.js
+
 const RowItem = ({row}) => {
   return (
     <tr {...row.getRowProps()} className='table-container--row'>

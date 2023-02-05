@@ -1,5 +1,6 @@
 import './styles.scss'
 
+// Composant Loader 
 function Loader() {
   return (
     <div className='loader'>

@@ -26,23 +26,24 @@
 .anime-card--container{
   @include flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 5vw;
 }
+// Style pour une carte
  .cards{
  // Début du style de chaque carte
    &--cardsboard {
-     display: flex;
      @include flex;
      height: 100%;
      position: relative;    
      border-radius: 20px;
-     width: 30%;
+     width: 20vw;
      margin: 50px 0;
 
      &--card{
      flex: initial;
      position: relative;
-     height: 30vw;
+     height: 20vw;
      width: 35vw;
      -moz-perspective: 200rem;
      perspective: 200rem;
@@ -53,12 +54,10 @@
        background-color: rgba(v.$black, 0.1);
        border-radius: 2px;
      }
- 
      & ::-webkit-scrollbar
      {
        width: 10px;
      }
- 
      & ::-webkit-scrollbar-thumb
      {
        border-radius: 2px;
@@ -67,7 +66,7 @@
  
  // Style sur chaque côté
    &__side {
-     height: 30vw;
+     height: 25vw;
      transition: all 0.8s ease;
      position: absolute;
      top: 0;
@@ -102,7 +101,7 @@
    transform: rotateY(-180deg);
   }
  
-  // Côté back des cartes
+  // Derrière des cartes
   &__cover {
     @include titre;
    position: relative;
@@ -163,5 +162,4 @@
     cursor: pointer;
   }
 
-}}
-   }}
+}}}}

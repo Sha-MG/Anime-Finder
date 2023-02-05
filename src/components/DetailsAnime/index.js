@@ -15,7 +15,7 @@ import Loader from "../Loader";
 const DetailsAnimes = ({toggleFavorites, favorites}) => {
 
 // Déclarations nécessaires dans le state, 
-// Anime correspond aux données de l'API
+// anime correspond aux données de l'API
 // loadingData est pour l'affichage du loader,
 // toggled est pour l'affichage du boutton "Ajouter aux favoris" selon son état.
   const params = useParams();
@@ -37,6 +37,7 @@ const DetailsAnimes = ({toggleFavorites, favorites}) => {
     fetchAnimes();
   }, []);
 
+// Composant
   return (
     <div className='details-anime--container'>
 

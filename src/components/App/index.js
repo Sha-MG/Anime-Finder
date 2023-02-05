@@ -1,13 +1,17 @@
 // == Import
+// Interne
 import TableAnime from "../TableAnime";
 import DetailsAnime from "../DetailsAnime"
 import Favorites from "../Favorites";
+// Externe
 import { Routes, Route} from "react-router-dom";
 import { useState } from "react";
 
 // == Composant
 function App() {
 
+// Définition de favorites, tableau qui contiendra toutes les données des
+// animes séléctionnés par l'utilisateur
   const [favorites, setFavorites] = useState([]);
 
 // Fonction qui toggle l'Anime en question dans les favoris. 
@@ -27,6 +31,8 @@ function App() {
     }
   };
 
+// Composant
+// Les routes sont définies via React-Router-Dom
   return (
       <Routes>
         <Route path="/" element={<TableAnime toggleFavorites={toggleFavorites} favorites={favorites}/>} />
