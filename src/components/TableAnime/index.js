@@ -141,11 +141,11 @@ const TableAnime = () => {
 
             <div className='tableAnime-container--pagination'>
               <p className="tableAnime-container--arrow" onClick={e => handlePage(e, 'first', animes.links.first)}>First</p>
-              {index != lastPage &&
-                <HiArrowUturnRight className="tableAnime-container--arrow" size="30px" onClick={e => handlePage(e, 'next')}/>
-              }
               { index != 0 &&
                 <HiArrowUturnLeft className="tableAnime-container--arrow" size="30px" onClick={e => handlePage(e, 'prev')}/>
+              }
+              {index != lastPage &&
+                <HiArrowUturnRight className="tableAnime-container--arrow" size="30px" onClick={e => handlePage(e, 'next')}/>
               }
               <p className="tableAnime-container--arrow" onClick={e => handlePage(e, 'last', animes.links.last)}>Last</p>
             </div>
