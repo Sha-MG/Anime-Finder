@@ -154,8 +154,10 @@
   }
 
   &--link{
+    @include flex;
+    gap : 10px;
     background-color: v.$primary;
-    margin: 10% 20%;
+    margin: 10%;
     border-radius: 8px;
     color: v.$white;
     font-weight: 700;
